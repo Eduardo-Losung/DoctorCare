@@ -1,0 +1,820 @@
+/* ==================== TYPOGRAPHY ==================== */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+/* ==================== ROOT ==================== */
+
+:root {
+  font-size: 62.5%; /* 1rem = 10px */
+
+  /* Wrapper */
+  --padding-inline-smartphone: 2.4rem;
+  --margin-block-section: 10rem;
+
+  /* Colors */
+  --hue: 170;
+  --primary-color: hsla(var(--hue), 100%, 26%, 1);
+  --primary-color-hover: hsla(var(--hue), 100%, 14%, 1);
+  --primary-color-alpha-50: hsla(var(--hue), 100%, 26%, 0.5);
+  --primary-color-light: hsla(calc(var(--hue) - 22), 23%, 89%, 1);
+  --primary-color-light-2: hsla(calc(var(--hue) + 10), 14%, 97%, 1);
+  --secondary-color: hsla(39, 100%, 97%, 1);
+  ;
+
+  /* Mono colors */
+  --gray-headline: hsla(210, 11%, 15%, 1);
+  --gray-paragraph: hsla(210, 9%, 31%, 1);
+  --white: hsla(0, 0%, 100%, 1);
+
+  /* Nav */
+  --nav-height: 7.2rem;
+}
+
+/* ==================== GLOBAL ==================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==================== GENERAL ==================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.6rem;
+  overflow: overlay;
+  background: var(--primary-color-light-2);
+}
+
+section {
+  padding-block: var(--margin-block-section);
+}
+
+header h1 {
+  color: var(--gray-headline);
+  font-size: 3.4rem;
+  line-height: 130%;
+  margin-bottom: 2.4rem;
+}
+
+header h2 {
+  color: var(--gray-headline);
+  font-size: 3rem;
+  line-height: 130%;
+}
+
+header h4 {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  line-height: 150%;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.6rem;
+}
+
+p {
+  font-size: 1.8rem;
+  color: var(--gray-paragraph);
+  line-height: 150%;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+}
+
+.wrapper {
+  width: min(70rem, 100%);
+  margin-inline: auto;
+  padding-inline: var(--padding-inline-smartphone);
+}
+
+.btn-whatsapp {
+  background: var(--primary-color);
+
+  border: none;
+  border-radius: 0.6rem;
+
+  margin-inline: auto;
+
+  height: 6.2rem;
+  width: 100%;
+
+  color: var(--white);
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  transition: background 200ms;
+}
+
+.btn-whatsapp:hover {
+  background: var(--primary-color-hover);
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2rem;
+}
+
+#btnBackToTop {
+  position: fixed;
+  bottom: 1.8rem;
+  right: 1.8rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: 300ms;
+  transform: translateY(100%);
+}
+
+#btnBackToTop.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0%);
+}
+
+#btnBackToTop svg {
+  width: 6rem;
+  height: auto;
+}
+
+/* Custom Colors */
+
+#navigation .logo path[fill="#00856F"],
+#btnBackToTop circle {
+  fill: var(--primary-color);
+}
+
+body.menu-expanded #navigation .logo path,
+#navigation.scroll .logo path {
+  fill: var(--white);
+}
+
+#navigation button.open-menu path[stroke="#00856F"],
+#contact li path {
+  stroke: var(--primary-color);
+}
+
+#navigation.scroll button.open-menu path[stroke="#00856F"] {
+  stroke: var(--white);
+}
+
+#services svg circle {
+  fill: var(--primary-color-light);
+}
+
+#services svg path {
+  stroke: var(--primary-color);
+}
+
+/* ==================== NAV MOBILE ==================== */
+
+nav {
+  display: flex;
+  height: var(--nav-height);
+  position: fixed;
+  top: 0;
+  background: var(--primary-color-light);
+  z-index: 2;
+  width: 100%;
+}
+
+nav .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav.scroll {
+  background: var(--primary-color);
+}
+
+nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+nav button.close-menu {
+  display: none;
+}
+
+/* ==================== NAV EXPANDED ==================== */
+
+/*=== MENU EXPANDED =================================*/
+body.menu-expanded {
+  overflow: hidden;
+}
+
+body.menu-expanded > :not(nav, #home::before) {
+  visibility: hidden;
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .open-menu {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.menu-expanded .close-menu {
+  display: block;
+}
+
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.menu-expanded .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--primary-color);
+
+  width: 100vw;
+  height: 100vh;
+
+  padding-top: var(--nav-height);
+  padding-inline: var(--padding-inline-smartphone);
+
+  transition: transform 200ms;
+  transform: translatey(0%);
+}
+
+.menu {
+  transform: translatey(100%);
+}
+
+.menu ul:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+
+  margin-top: 6rem;
+
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 3.1rem;
+  text-align: center;
+
+  color: var(--white);
+}
+
+.menu ul li a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.menu a.btn-whatsapp {
+  background: var(--white);
+  color: var(--primary-color);
+
+  border: none;
+  border-radius: 0.6rem;
+
+  margin-block: 8rem;
+  margin-inline: auto; 
+
+  height: 5.4rem;
+  width: 100%;
+
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.menu a.btn-whatsapp path {
+  fill: var(--primary-color);
+}
+
+.menu a.btn-whatsapp:hover {
+  background: var(--primary-color);
+  filter: brightness(1.5);
+  color: var(--white);
+}
+
+.menu a.btn-whatsapp:hover path {
+  fill: var(--white);
+}
+
+body.menu-expanded .logo,
+body.menu-expanded button {
+  z-index: 1;
+}
+
+body.menu-expanded .logo path {
+  fill: var(--white);
+}
+
+body.menu-expanded button.close-menu path {
+  stroke: var(--white);
+}
+
+body.menu-expanded nav button.open-menu  {
+  display: none;
+}
+
+body.menu-expanded header::before {
+  background: var(--primary-color-light);
+}
+
+/* ==================== NAV DESKTOP ==================== */
+
+#navigation .menu-desktop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-block: 2.4rem;
+}
+
+#navigation.scroll .logo-desktop svg path {
+  fill: var(--primary-color-light);
+}
+
+#navigation .links ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3.2rem;
+}
+
+#navigation .links li a {
+  font-weight: 400;
+  text-decoration: none;
+  color: var(--primary-color);
+  opacity: 0.8;
+  transition: opacity .4s;
+
+}
+
+#navigation .links li a.active,
+#navigation .links li a:hover {
+  opacity: 1;
+  font-weight: 700;
+}
+
+#navigation .links li a::after {
+  content: '';
+  width: 0%;
+  height: 0.3rem;
+  border-radius: 0.8rem;
+  background: var(--primary-color);
+  position: relative;
+  display: block;
+  bottom: -2.4rem;
+  left: -0.7rem;
+  transition: width 0.2s;
+}
+
+#navigation .links li a.active::after,
+#navigation .links li a:hover::after {
+  padding-inline: 0.8rem;
+  width: 100%;
+}
+
+#navigation.scroll .links li a::after {
+  background: var(--primary-color-light);
+}
+
+#navigation.scroll .links li a {
+  color: var(--primary-color-light-2);
+}
+
+#navigation.scroll .links li a.active,
+#navigation.scroll .links li a:hover {
+  opacity: 1;
+}
+
+#navigation .menu-desktop a.btn-whatsapp {
+  margin: 0;
+  background: none;
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  font-weight: 500;
+  width: max-content;
+  height: initial;
+  padding: 1rem 2.4rem;
+  gap: 0.8rem;
+}
+
+#navigation.scroll .menu-desktop a.btn-whatsapp {
+  background: var(--primary-color-light);
+}
+
+#navigation .menu-desktop a.btn-whatsapp:hover {
+  font-weight: 700;
+  filter: brightness(1.3);
+}
+
+/* ==================== HOME ==================== */
+
+#home {
+  padding-top: calc(4.1rem + var(--nav-height));
+}
+
+#home::before {
+  content: '';
+  width: 100%;
+  height: calc(112rem + var(--nav-height));
+  background: var(--primary-color-light);
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+#home p {
+  margin-bottom: 3.2rem;
+}
+
+#home img {
+  width: 26.4rem;
+  display: block;
+  margin-inline: auto;
+  object-position: 0 2rem;
+}
+
+#home .btn-whatsapp {
+	margin-bottom: 6rem;
+}
+
+.stats {
+  width: 100%;
+  padding-block: 4rem;
+  margin-inline: auto;
+  margin-bottom: 3.2rem;
+
+  background-color: var(--secondary-color);
+  border: 1px solid var(--primary-color-light);
+  border-radius: 0.6rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6rem;
+
+  text-align: center;
+}
+
+.stat h3 {
+  font-size: 4.8rem;
+  color: var(--gray-headline);
+  line-height: 130%;
+  margin-bottom: 0.4rem;
+}
+
+.stat p {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 1.6rem;
+  line-height: 150%;
+}
+
+
+/* ==================== SERVICES ==================== */
+
+#services h4 {
+  font-size: 1.4rem;
+  line-height: 150%;
+  letter-spacing: 0.08rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+}
+
+#services h2 {
+  font-size: 3rem;
+  line-height: 3.9rem;
+  color: var(--gray-headline);
+  margin-bottom: 6rem;
+}
+
+#services .cards {
+  display: flex;
+  flex-direction: column;
+}
+
+#services .card {
+  padding: 2.4rem;
+  background: var(--white);
+  border: 0.1rem solid var(--primary-color-light);
+  border-radius: 0.6rem;
+  margin-bottom: 3.2rem;
+}
+
+#services .card h3 {
+  margin-block: 1.6rem;
+}
+
+/* ==================== ABOUT ==================== */
+
+#about {
+	background: var(--secondary-color);
+}
+
+#about h2 {
+	margin-top: 1.6rem;
+	margin-bottom: 2.4rem;
+}
+
+#about p {
+	margin-bottom: 6rem;
+}
+
+/* ==================== CONTACT ==================== */
+
+#contact h2 {
+	font-size: 3rem;
+	line-height: 39px;
+	margin-bottom: 3.2rem;
+}
+
+#contact ul {
+	display: flex;
+	flex-direction: column;
+	gap: 1.6rem;
+	margin-bottom: 3.2rem;
+}
+
+#contact li {
+	display: flex;
+	align-items: center;
+	gap: 0.8rem;
+}
+
+#contact .btn-whatsapp {
+	margin-bottom: 6rem;
+}
+
+#contact .mail {
+	color: var(--primary-color);
+}
+
+/* ==================== FOOTER ==================== */
+
+footer {
+  background: var(--primary-color);
+  padding-block: 6rem;
+  color: var(--white);
+}
+
+footer p {
+  color: var(--white);
+  line-height: 2;
+  margin-bottom: 3.2rem;
+}
+
+footer .logo svg {
+  width: 23.6rem;
+  height: 3.1rem;
+  margin-bottom: 2.4rem;
+}
+
+footer .logo path {
+  fill: var(--white);
+}
+
+footer .social-links {
+  justify-content: flex-start;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (min-width: 1024px) {
+  
+  /* ==================== GENERAL ==================== */
+  
+    body {
+      overflow: auto;
+    }
+  
+    .wrapper {
+      width: min(112rem, 100%);
+      display: grid;
+    }
+  
+    .col-a {
+      grid-area: A;
+    } 
+  
+    .col-b {
+      grid-area: B;
+    }
+  
+    .btn-whatsapp {
+      margin-bottom: 0;
+      width: max-content;
+      padding-inline: 3.2rem;
+      margin-left: 0;
+    }
+  
+  
+    section#services,
+    section#about,
+    section#contact {
+      padding-block: 16rem;
+    }
+  
+  /* ==================== NAV ==================== */
+  
+    /* reset */
+  
+    nav#navigation .logo,
+    nav#navigation .menu,
+    nav#navigation .close-menu,
+    nav#navigation .open-menu,
+    nav#navigation .social-links {
+      display: none;
+    }
+  
+    /* ==================== HOME ==================== */
+  
+    #home {
+      padding-top: var(--nav-height);
+      background: var(--primary-color-light);
+    }
+  
+    #home::before {
+      display: none;
+    }
+  
+    #home .wrapper {
+      grid-template-columns: 60.5rem 1fr;
+      grid-template-areas:
+      'A B'
+      'C C';
+    }
+  
+    #home .col-a {
+      text-align: start;
+      align-self: center;
+    }
+  
+    #home .stats {
+      grid-area: C;
+      flex-direction: row;
+      gap: 0;
+      padding: 6rem;
+      margin-bottom: -10rem;
+    }
+  
+    #home h1 {
+      font-size: 5.2rem;
+    }
+  
+    #home .content p {
+      font-size: 1.8rem;
+    }
+  
+    #home img {
+      width: 42rem;
+    }
+  
+    #home .stats .stat + .stat {
+      border-left: solid 1px var(--primary-color-alpha-50);
+    }
+  
+    #home .stats .stat {
+      flex: 1;
+    }
+  
+    #home .stat p {
+      margin-bottom: 0;
+    }
+  
+    /* ==================== SERVICES ==================== */
+  
+    #services {
+      margin-top: 10rem;
+    }
+  
+    #services h2 {
+      font-size: 4rem;
+      line-height: 5.2rem;
+      width: 48rem;
+    }
+  
+    #services h2,
+    #services h4 {
+      text-align: center;
+      margin-inline: auto;
+    }
+  
+    #services .cards {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 4rem;
+    }
+  
+    #services .card {
+      width: 30%;
+      flex-grow: 1;
+      margin-bottom: 0;
+    }
+  
+    /* ==================== ABOUT ==================== */
+  
+    #about .wrapper {
+      grid-template-columns: 48rem 1fr;
+      grid-template-areas: 'B A';
+      gap: 6.7rem;
+    }
+  
+    #about .col-a {
+      align-self: center;
+    }
+  
+    #about h2 {
+      font-size: 4rem;
+      line-height: 5.2rem;
+    }
+  
+    #about .content p {
+      margin-bottom: 0;
+    }
+  
+    /* ==================== CONTACT ==================== */
+  
+    #contact .wrapper {
+      grid-template-columns: 1fr 57.5rem;
+      grid-template-areas: 'A B';
+      gap: 6.7rem;
+    }
+  
+    #about .col-a {
+      align-self: center;
+    }
+  
+    #contact h2 {
+      font-size: 4rem;
+      line-height: 5.2rem;
+      width: 40.4rem;
+    }
+  
+    /* ==================== FOOTER ==================== */
+    
+    footer {
+      padding-block: 8rem;
+    }
+  
+    footer .wrapper {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: 'A B';
+    }
+  
+    footer p {
+      margin-bottom: 0;
+    }
+  
+    footer .col-a {
+      align-self: center;
+    }
+  
+    footer .col-b {
+      align-self: center;
+      justify-self: end;
+    }
+  
+  }
+  
+  @media (max-width: 1023px) {
+    
+      /* reset */
+    
+      nav#navigation .menu-desktop {
+        display: none;
+      }
+    
+    }
